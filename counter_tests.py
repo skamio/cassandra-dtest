@@ -33,4 +33,4 @@ class TestCounters(Tester):
             assert len(res) == nb_counter
             for c in xrange(0, nb_counter):
                 assert len(res[c]) == 2, "Expecting key and counter for counter%i, got %s" % (c, str(res[c]))
-                assert res[c][1] == i + 1, "Expecting counter%i = %i, got %i" % (c, i + 1, res[c][0])
+                assert res[c][1] == i + 1, "Expecting counter%s = %s, got %s" % (repr(c), repr(i + 1), repr(res[c][1]))

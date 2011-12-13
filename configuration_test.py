@@ -2,6 +2,7 @@ from dtest import Tester
 from assertions import *
 
 import re
+import time
 from ccmlib.cluster import Cluster
 
 class TestConfiguration(Tester):
@@ -17,9 +18,11 @@ class TestConfiguration(Tester):
         cli.do("create keyspace ks")
         cli.do("use ks")
         cli.do("create column family cf with compression_options={sstable_compression:SnappyCompressor, chunk_length_kb:32}")
+        time.sleep(5); # make sure to agree schema
         self._check_chunk_length(cli, 32)
 
         cli.do("update column family cf with compression_options={sstable_compression:SnappyCompressor, chunk_length_kb:64}")
+        time.sleep(5); # make sure to agree schema
         self._check_chunk_length(cli, 64)
 
         cli.close()
